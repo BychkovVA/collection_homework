@@ -8,14 +8,21 @@ public class Main {
             Fruit fruit = new Fruit();
 
             //создаем коробки конструктором коробки
-            Box boxApple = new Box(apple, 5);
-            Box boxOrange = new Box(orange, 8);
+            Box<Apple> boxApple = new Box<>();
+            boxApple.addFruitsINBox(new Apple());
+            boxApple.addFruitsINBox(new Apple());
+            boxApple.addFruitsINBox(new Apple());
 
-            Box boxFruit = new Box(fruit);
+            Box<Orange> boxOrange = new Box<>();
+            boxOrange.addFruitsINBox(new Orange());
+            boxOrange.addFruitsINBox(new Orange());
+
+            Box<Fruit> boxFruit = new Box<>();
 
             //наполняем коробку методом коробки
-            boxFruit.addFruitsINBox(apple, 2);
-            boxFruit.addFruitsINBox(orange, 4);
+            boxFruit.addFruitsINBox(apple);
+            boxFruit.addFruitsINBox(orange);
+            boxFruit.addFruitsINBox(fruit);
 
 
             System.out.println("Вес коробки с яблоками: " + boxApple.weight());
@@ -23,9 +30,11 @@ public class Main {
             System.out.println("Вес коробки с фруктами: " + boxFruit.weight());
 
             System.out.println("Сравниваем вес коробок: " + boxApple.compare(boxOrange));
+            System.out.println("Сравниваем вес коробок: " + boxApple.compare(boxApple));
 
             //перекладываем яблоки в другую корзину
             boxApple.shiftFruits(boxFruit);
+            //boxApple.shiftFruits(boxApple);
 
             System.out.println("Вес коробки с фруктами после перекладывания: " + boxFruit.weight());
             System.out.println("Вес коробки с яблоками после перекладывания: " + boxApple.weight());
